@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+<head>
+<meta charset="utf-8"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<style>
+        body {
+            background-color: #f4f4f4;
+            font-family: "Noto Sans JP", sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            z-index: 11;
+        }
+
+        .first-screen {
+            background-color: #f4f4f4;
+            width: 300px;
+            height: 600px;
+            transition: 0.3s;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            /* align-items: center; */
+        }
+
+        .select-item {
+            background-color: white;
+            width: 250px;
+            height: 50px;
+            margin-top: 20px;
+            border-width: 1px;
+            border-radius: 10px;
+            border-color: lightgray;
+            border-style: solid;
+            transition: 0.3s;
+            padding: 10px;
+            text-align: center;
+            display: flex;
+            justify-content: left;
+            align-items: center;
+        }
+
+        .content-item {
+            background-color: white;
+            width: 280px;
+            height: 200px;
+            margin-top: 20px;
+            border-radius: 10px;
+            transition: 0.3s;
+            padding: 10px;
+            box-shadow: inset;
+        }
+
+        .icon {
+            width: 40px;
+            height: 30px;
+            margin-top: 10px;
+            margin-right: 15px;
+        }
+    </style>
+<title>Flash Card</title>
+</head>
+<body>
+<div class="first-screen" id="fourth-page" style="display: block;">
+<div style="display: flex; justify-content: space-between; align-items: center;">
+<p id="chapter30" style="color: #05a5a9; font-size: 36px; font-weight: 700; margin: 0px;margin-left: 10px;">第4章30</p>
+<img class="icon" onclick="goFirst()" src="img/menu.png"/>
+</div>
+<div id="japanese_content" onclick="goEnglishContent()" style="display: block;transition: opacity 1s ease-in-out, transform 1s ease-in-out;transform: translateX(0); z-index: 0;">
+<div class="content-item">
+<div>
+<p id="content_order" style="color: black; font-size: 20px; font-weight: 700; margin: 0px;">1/10</p>
+</div>
+<div style="display: flex; justify-content: center; align-items: center; margin-top: 50px;">
+<p id="main_content" style="color: black; font-size: 20px; font-weight: 600; margin: 0px; text-align: center;">
+                        もっと運動したほうがいいよな〜</p>
+</div>
+</div>
+</div>
+<div id="english_content" style="display: none; position: relative; transition: opacity 1s ease-in-out, transform 1s ease-in-out;transform: translateX(0);">
+<div class="content-item" onclick="goJapaneseContent()">
+<div>
+<p id="english_content_order" style="color: black; font-size: 20px; font-weight: 700; margin: 0px;">
+                        1/10</p>
+</div>
+<div style="display: flex; justify-content: center; align-items: center; margin-top: 50px;">
+<p id="english_main_content" style="color: black; font-size: 20px; font-weight: 500; margin: 0px; text-align: center;">
+                        I should get more exercise.</p>
+</div>
+</div>
+<div style="position: absolute; bottom: 0px;left: 10px; z-index: 2;">
+<audio controls="True" id="audioBtn" src="audio/answer.mp3" style="width: 250px; height: 30px;"></audio>
+</div>
+<div style="position: absolute; bottom: 0px;left: 10px;z-index: 1;">
+<audio controls="True" id="audioAnswer" src="audio/answer.mp3" style="width: 250px; height: 30px;"></audio>
+</div>
+</div>
+        <div id="available_content"
+            style="justify-content: center; align-items: center; margin-top: 20px; display: none;">
+            <p id="available_sentence"
+                style="color: black; font-size: 14px; font-weight: 600; margin: 0px; text-align: center;">
+                ※特定のカフェの話をしていないのでa cafeとなる。</p>
+        </div>
+        <div id="success_content" style="display: none;">
+<div class="content-item" style="position: relative;">
+<img src="img/success.PNG" style="width: 200px; height: 120px;position: absolute; bottom: 80px;left: 50px;"/>
+<img src="img/flower_left.png" style="width: 70px; height: 70px;position: absolute; bottom: 0px;left: 10px;"/>
+<img src="img/flower_right.png" style="width: 70px; height: 70px;position: absolute; bottom: 0px;right: 10px;"/>
+</div>
+</div>
+<div id="button_group" style="position: relative; margin-top: 20px; display: none;">
+<img id="leftArrow" src="img/left-arrow.PNG" style="width: 50px; height: 30px; position: absolute; left: 0px; display: block;"/>
+<img id="rightArrow" src="img/right-arrow.PNG" style="width: 50px; height: 30px;position: absolute; right: 0px;"/>
+</div>
+<div id="button_side" style="position: relative; margin-top: 20px; display: none;">
+<button onclick="goLink()" style="position: absolute; left: 0px; display: block; margin: 0px;">問題を修了する</button>
+<img onclick="goNextPart()" src="img/right-arrow.PNG" style="width: 50px; height: 30px;position: absolute; right: 0px;"/>
+</div>
+</div>
+</body>
+<script>
+const japaneseModelContent = {
+    "1/10": "もっと運動したほうがいいよな〜",
+    "2/10": "もっと早く起きたほうがいいよな。",
+    "3/10": "休んだほうがいいよ。",
+    "4/10": "天気を確認したほうがいいよ。",
+    "5/10": "彼に直接話したほうがいいよ。",
+    "6/10": "絶対に行ったほうがいいよ！",
+    "7/10": "あまり夜更かししないほうがいいよ。",
+    "8/10": "ジャンクフードをそんなに食べないほうがいいよ。",
+    "9/10": "それについてあまり心配しないほうがいいよ。",
+    "10/10": "朝ご飯を抜かないほうがいいよ。"
+};
+
+const englishModelContent = {
+    "1/10": "I should get more exercise.",
+    "2/10": "I should wake up earlier.",
+    "3/10": "You should get some rest.",
+    "4/10": "You should check the weather.",
+    "5/10": "You should talk to him directly.",
+    "6/10": "You should definitely go there.",
+    "7/10": "You shouldn't stay up too late.",
+    "8/10": "You shouldn't eat so much junk food.",
+    "9/10": "You shouldn't worry too much about it.",
+    "10/10": "You shouldn't skip breakfast."
+};
+
+
+
+
+
+    let order = ["1/10", "2/10", "3/10", "4/10", "5/10", "6/10", "7/10", "8/10", "9/10", "10/10"];
+    let onceMore = [];
+
+    var fourthPage = document.getElementById('fourth-page');
+    var selectionTitle5 = document.getElementById('selection-title-5');
+    var subTitle5 = document.getElementById('sub_title_5');
+    var contentOrder = document.getElementById('content_order');
+    var mainContent = document.getElementById('main_content');
+    var englishContent = document.getElementById('english_content');
+    var japaneseContent = document.getElementById('japanese_content');
+    var successContent = document.getElementById('success_content');
+    var buttonGroup = document.getElementById('button_group');
+    var buttonSide = document.getElementById('button_side');
+    var englishContentOrder = document.getElementById('english_content_order');
+    var englishMainContent = document.getElementById('english_main_content');
+    var onceMoreBtn = document.getElementById('once_more_btn');
+    var chapterText1 = document.getElementById('chapter1');
+    var chapterText2 = document.getElementById('chapter2');
+    var mainPage = document.getElementById('main-page');
+    var audioBtn = document.getElementById('audioBtn');
+    var availableContent = document.getElementById('available_content');
+    var availableSentence = document.getElementById('available_sentence');
+    let isMouseDown = false;
+    let startX, endX;
+
+    var audioModelContent = Array(10);
+
+    for (let i = 0; i < 10; i++) {
+        audioModelContent[i] = 'audio/chapter4/should/' + (i + 1) + '.m4a';
+    }
+
+    function goFirst() {
+    }
+
+    function goEnglishContent() {
+        englishContent.style.display = 'block';
+        japaneseContent.style.display = 'none';
+availableContent.style.display = 'none';
+        buttonGroup.style.display = 'block';
+        englishContentOrder.textContent = contentOrder.textContent;
+        englishMainContent.textContent = englishModelContent[contentOrder.textContent];
+        audioVar = audioModelContent[parseInt(contentOrder.textContent.split('/')[0]) - 1];
+        audioBtn.src = audioVar;
+    }
+
+    function goJapaneseContent() {
+        if (isClicked == 0) {
+            englishContent.style.display = 'none';
+            japaneseContent.style.display = 'block';            
+            availableContent.style.display = 'none';
+
+            buttonGroup.style.display = 'none';
+            mainContent.textContent = japaneseModelContent[contentOrder.textContent];
+
+        }
+    }
+
+    var clickCount = 0;
+    var successCount = 0;
+
+    document.getElementById("rightArrow").addEventListener('click', function () {
+        audioBtn.pause();
+        document.getElementById('audioAnswer').pause();
+        document.getElementById('audioAnswer').currentTime = 0;
+        document.getElementById('audioAnswer').play();
+        audioBtn.currentTime = 0;
+        goNext();
+    })
+
+    function goLink() {
+        window.location.href = "https://notepm.jp/sharing/b0a4fbd5-9624-45d0-894c-54ca349eee4d";
+
+    }
+
+        function goNext() {
+        availableContent.style.display = 'none';
+        clickCount++;
+        let arrayOrder = 0;
+        if (clickCount < 10) {
+            arrayOrder = order.indexOf(contentOrder.textContent);
+        }
+        if (arrayOrder < 10 && clickCount < 10) {
+            englishContent.style.opacity = '0';
+            englishContent.style.transform = 'translateX(50%) rotate(30deg)'
+            setTimeout(() => {
+                englishContent.style.display = 'none';
+                japaneseContent.style.display = 'block';            
+            availableContent.style.display = 'none';
+
+                successCount++;
+                englishContent.style.opacity = '1';
+                englishContent.style.transform = 'translateX(0) rotate(0deg)';
+            }, 1000);
+            buttonGroup.style.display = 'none';
+            contentOrder.textContent = order[arrayOrder + 1];
+            mainContent.textContent = japaneseModelContent[contentOrder.textContent];
+
+        } else if (onceMore.length != 0) {
+            englishContent.style.opacity = '0';
+            englishContent.style.transform = 'translateX(50%) rotate(30deg)'
+            setTimeout(() => {
+                englishContent.style.display = 'none';
+                japaneseContent.style.display = 'block';            
+            availableContent.style.display = 'none';
+
+                successCount++;
+                englishContent.style.opacity = '1';
+                englishContent.style.transform = 'translateX(0) rotate(0deg)';
+            }, 1000);
+            buttonGroup.style.display = 'none';
+            if (clickCount != 10) onceMore.shift(onceMore[0]);
+            if (onceMore.length == 0) {
+                setTimeout(() => {
+                    englishContent.style.display = 'none';
+                    japaneseContent.style.display = 'none';
+availableContent.style.display = 'none';
+                    successContent.style.display = 'block';
+                    buttonGroup.style.display = 'none';
+                    buttonSide.style.display = 'block';
+                    clickCount = 0;
+                    successCount = 0;
+                }, 1000);
+            }
+            contentOrder.textContent = order[onceMore[0]];
+            mainContent.textContent = japaneseModelContent[contentOrder.textContent];
+
+        } else {
+            setTimeout(() => {
+                englishContent.style.display = 'none';
+                japaneseContent.style.display = 'none';
+availableContent.style.display = 'none';
+                buttonGroup.style.display = 'none';
+                successContent.style.display = 'block';
+                buttonSide.style.display = 'block';
+                clickCount = 0;
+                partCount = 0;
+                successCount = 0;
+            }, 1000);
+        }
+    }
+
+    var partCount = 0;
+
+    function goNextPart() {
+        window.location.href = "https://masaenglishcompany.com/grammar/must.html";
+    }
+
+    document.getElementById("leftArrow").addEventListener('click', function () {
+        goOneMore();
+    })
+
+    function goOneMore() {
+        availableContent.style.display = 'none';
+        clickCount++;
+        let arrayOrder = 0;
+        if (clickCount < 11) {
+            arrayOrder = order.indexOf(contentOrder.textContent);
+        }
+        if (arrayOrder < 10 && clickCount < 11) {
+            onceMore.push(arrayOrder);
+            console.log(arrayOrder);
+            if (clickCount != 10) {
+                englishContent.style.opacity = '0';
+                englishContent.style.transform = 'translateX(-50%) rotate(-30deg)'
+                setTimeout(() => {
+                    englishContent.style.display = 'none';
+                    japaneseContent.style.display = 'block';            
+            availableContent.style.display = 'none';
+
+                    englishContent.style.opacity = '1';
+                    englishContent.style.transform = 'translateX(0) rotate(0deg)';
+                }, 1000);
+                buttonGroup.style.display = 'none';
+                contentOrder.textContent = order[arrayOrder + 1];
+                mainContent.textContent = japaneseModelContent[contentOrder.textContent];
+            } else {
+                englishContent.style.opacity = '0';
+                englishContent.style.transform = 'translateX(-50%) rotate(-30deg)'
+                setTimeout(() => {
+                    englishContent.style.display = 'none';
+                    japaneseContent.style.display = 'block';            
+            availableContent.style.display = 'none';
+
+                    englishContent.style.opacity = '1';
+                    englishContent.style.transform = 'translateX(0) rotate(0deg)';
+                }, 1000);
+                buttonGroup.style.display = 'none';
+                contentOrder.textContent = order[onceMore[0]];
+                mainContent.textContent = japaneseModelContent[contentOrder.textContent];
+
+            }
+        } else if (onceMore.length != 0) {
+            englishContent.style.opacity = '0';
+            englishContent.style.transform = 'translateX(-50%) rotate(-30deg)';
+            setTimeout(() => {
+                englishContent.style.display = 'none';
+                japaneseContent.style.display = 'block';            
+            availableContent.style.display = 'none';
+
+                englishContent.style.opacity = '1';
+                englishContent.style.transform = 'translateX(0) rotate(0deg)';
+            }, 1000);
+            buttonGroup.style.display = 'none';
+            var temp = onceMore[0];
+            onceMore.shift(temp);
+            onceMore.push(temp);
+            contentOrder.textContent = order[onceMore[0]];
+            mainContent.textContent = japaneseModelContent[contentOrder.textContent];
+
+        }
+    }
+
+    var audioVar;
+
+    document.addEventListener('mousedown', handleMouseDown);
+    document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('mouseup', handleMouseUp);
+
+    document.addEventListener('touchstart', handleTouchStart);
+    document.addEventListener('touchmove', handleTouchMove);
+    document.addEventListener('touchend', handleTouchEnd);
+
+    function handleMouseDown(e) {
+        isMouseDown = true;
+        isClicked = 0;
+        startX = e.clientX;
+    }
+
+    function handleMouseMove(e) {
+        if (!isMouseDown) return;
+        if (englishContent.style.display == 'block') {
+            isClicked = 1;
+        }
+    }
+
+    function handleMouseUp(e) {
+        isMouseDown = false;
+        endX = e.clientX;
+        const deltaX = endX - startX;
+        if (deltaX < 0 && englishContent.style.display == 'block') {
+            goOneMore();
+        }
+        if (deltaX > 1 && englishContent.style.display == 'block') {
+            audioBtn.pause();
+            document.getElementById('audioAnswer').pause();
+            document.getElementById('audioAnswer').currentTime = 0;
+            document.getElementById('audioAnswer').play();
+            audioBtn.currentTime = 0;
+            goNext();
+        }
+    }
+
+    function handleTouchStart(e) {
+        isMouseDown = true;
+        var touch = e.touches[0];
+        isClicked = 0;
+        startX = touch.clientX;
+        endX = startX;
+    }
+
+    function handleTouchMove(e) {
+        if (!isMouseDown) return;
+        if (englishContent.style.display == 'block') {
+            isClicked = 1;
+            var touch = e.touches[0];
+            endX = touch.clientX;
+        }
+    }
+
+    function handleTouchEnd(e) {
+        isMouseDown = false;
+        const deltaX = endX - startX;
+        if (deltaX < 0 && englishContent.style.display == 'block') {
+            goOneMore();
+        }
+        if (deltaX > 1 && englishContent.style.display == 'block') {
+            audioBtn.pause();
+            document.getElementById('audioAnswer').pause();
+            document.getElementById('audioAnswer').currentTime = 0;
+            document.getElementById('audioAnswer').play();
+            audioBtn.currentTime = 0;
+            goNext();
+        }
+    }
+
+</script>
+</html>
