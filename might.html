@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 
 <html lang="ja">
+
 <head>
-<meta charset="utf-8"/>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&amp;display=swap" rel="stylesheet"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<style>
+    <meta charset="utf-8" />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&amp;display=swap"
+        rel="stylesheet" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <style>
         body {
             background-color: #f4f4f4;
             font-family: "Noto Sans JP", sans-serif;
@@ -66,43 +68,50 @@
             margin-right: 15px;
         }
     </style>
-<title>Flash Card</title>
+    <title>Flash Card</title>
 </head>
+
 <body>
-<div class="first-screen" id="fourth-page" style="display: block;">
-<div style="display: flex; justify-content: space-between; align-items: center;">
-<p id="chapter29" style="color: #05a5a9; font-size: 36px; font-weight: 700; margin: 0px;margin-left: 10px;">第4章29</p>
-<img class="icon" onclick="goFirst()" src="img/menu.png"/>
-</div>
-<div id="japanese_content" onclick="goEnglishContent()" style="display: block;transition: opacity 1s ease-in-out, transform 1s ease-in-out;transform: translateX(0); z-index: 0;">
-<div class="content-item">
-<div>
-<p id="content_order" style="color: black; font-size: 20px; font-weight: 700; margin: 0px;">1/10</p>
-</div>
-<div style="display: flex; justify-content: center; align-items: center; margin-top: 50px;">
-<p id="main_content" style="color: black; font-size: 20px; font-weight: 600; margin: 0px; text-align: center;">
+    <div class="first-screen" id="fourth-page" style="display: block;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <p id="chapter29" style="color: #05a5a9; font-size: 36px; font-weight: 700; margin: 0px;margin-left: 10px;">
+                第4章29</p>
+            <img class="icon" onclick="goFirst()" src="img/menu.png" />
+        </div>
+        <div id="japanese_content" onclick="goEnglishContent()"
+            style="display: block;transition: opacity 1s ease-in-out, transform 1s ease-in-out;transform: translateX(0); z-index: 0;">
+            <div class="content-item">
+                <div>
+                    <p id="content_order" style="color: black; font-size: 20px; font-weight: 700; margin: 0px;">1/10</p>
+                </div>
+                <div style="display: flex; justify-content: center; align-items: center; margin-top: 50px;">
+                    <p id="main_content"
+                        style="color: black; font-size: 20px; font-weight: 600; margin: 0px; text-align: center;">
                         今夜、あなたに電話するかもしれない。</p>
-</div>
-</div>
-</div>
-<div id="english_content" style="display: none; position: relative; transition: opacity 1s ease-in-out, transform 1s ease-in-out;transform: translateX(0);">
-<div class="content-item" onclick="goJapaneseContent()">
-<div>
-<p id="english_content_order" style="color: black; font-size: 20px; font-weight: 700; margin: 0px;">
+                </div>
+            </div>
+        </div>
+        <div id="english_content"
+            style="display: none; position: relative; transition: opacity 1s ease-in-out, transform 1s ease-in-out;transform: translateX(0);">
+            <div class="content-item" onclick="goJapaneseContent()">
+                <div>
+                    <p id="english_content_order" style="color: black; font-size: 20px; font-weight: 700; margin: 0px;">
                         1/10</p>
-</div>
-<div style="display: flex; justify-content: center; align-items: center; margin-top: 50px;">
-<p id="english_main_content" style="color: black; font-size: 20px; font-weight: 500; margin: 0px; text-align: center;">
+                </div>
+                <div style="display: flex; justify-content: center; align-items: center; margin-top: 50px;">
+                    <p id="english_main_content"
+                        style="color: black; font-size: 20px; font-weight: 500; margin: 0px; text-align: center;">
                         I might call you tonight.</p>
-</div>
-</div>
-<div style="position: absolute; bottom: 0px;left: 10px; z-index: 2;">
-<audio controls="True" id="audioBtn" src="audio/answer.mp3" style="width: 250px; height: 30px;"></audio>
-</div>
-<div style="position: absolute; bottom: 0px;left: 10px;z-index: 1;">
-<audio controls="True" id="audioAnswer" src="audio/answer.mp3" style="width: 250px; height: 30px;"></audio>
-</div>
-</div>
+                </div>
+            </div>
+            <div style="position: absolute; bottom: 0px;left: 10px; z-index: 2;">
+                <audio controls="True" id="audioBtn" src="audio/answer.mp3" style="width: 250px; height: 30px;"></audio>
+            </div>
+            <div style="position: absolute; bottom: 0px;left: 10px;z-index: 1;">
+                <audio controls="True" id="audioAnswer" src="audio/answer.mp3"
+                    style="width: 250px; height: 30px;"></audio>
+            </div>
+        </div>
         <div id="available_content"
             style="justify-content: center; align-items: center; margin-top: 20px; display: none;">
             <p id="available_sentence"
@@ -110,49 +119,56 @@
                 ※特定のカフェの話をしていないのでa cafeとなる。</p>
         </div>
         <div id="success_content" style="display: none;">
-<div class="content-item" style="position: relative;">
-<img src="img/success.PNG" style="width: 200px; height: 120px;position: absolute; bottom: 80px;left: 50px;"/>
-<img src="img/flower_left.png" style="width: 70px; height: 70px;position: absolute; bottom: 0px;left: 10px;"/>
-<img src="img/flower_right.png" style="width: 70px; height: 70px;position: absolute; bottom: 0px;right: 10px;"/>
-</div>
-</div>
-<div id="button_group" style="position: relative; margin-top: 20px; display: none;">
-<img id="leftArrow" src="img/left-arrow.PNG" style="width: 50px; height: 30px; position: absolute; left: 0px; display: block;"/>
-<img id="rightArrow" src="img/right-arrow.PNG" style="width: 50px; height: 30px;position: absolute; right: 0px;"/>
-</div>
-<div id="button_side" style="position: relative; margin-top: 20px; display: none;">
-<button onclick="goLink()" style="position: absolute; left: 0px; display: block; margin: 0px;">問題を修了する</button>
-<img onclick="goNextPart()" src="img/right-arrow.PNG" style="width: 50px; height: 30px;position: absolute; right: 0px;"/>
-</div>
-</div>
+            <div class="content-item" style="position: relative;">
+                <img src="img/success.PNG"
+                    style="width: 200px; height: 120px;position: absolute; bottom: 80px;left: 50px;" />
+                <img src="img/flower_left.png"
+                    style="width: 70px; height: 70px;position: absolute; bottom: 0px;left: 10px;" />
+                <img src="img/flower_right.png"
+                    style="width: 70px; height: 70px;position: absolute; bottom: 0px;right: 10px;" />
+            </div>
+        </div>
+        <div id="button_group" style="position: relative; margin-top: 20px; display: none;">
+            <img id="leftArrow" src="img/left-arrow.PNG"
+                style="width: 50px; height: 30px; position: absolute; left: 0px; display: block;" />
+            <img id="rightArrow" src="img/right-arrow.PNG"
+                style="width: 50px; height: 30px;position: absolute; right: 0px;" />
+        </div>
+        <div id="button_side" style="position: relative; margin-top: 20px; display: none;">
+            <button onclick="goLink()"
+                style="position: absolute; left: 0px; display: block; margin: 0px;">問題を修了する</button>
+            <img onclick="goNextPart()" src="img/right-arrow.PNG"
+                style="width: 50px; height: 30px;position: absolute; right: 0px;" />
+        </div>
+    </div>
 </body>
 <script>
 
-const japaneseModelContent = {
-    "1/10": "今夜、あなたに電話するかもしれない。",
-    "2/10": "あなたの家に寄るかもしれない。",
-    "3/10": "明日寝坊するかもしれない。",
-    "4/10": "君、この映画好きかもしれないよ。",
-    "5/10": "彼は充電器を持ってるかも。",
-    "6/10": "明日までにこれを終わらせられないかもしれない。",
-    "7/10": "今夜は出かけないかもしれない。",
-    "8/10": "彼はそれに賛成しないかもしれない。",
-    "9/10": "彼は今日は機嫌が悪いかもしれない。",
-    "10/10": "彼女はすぐに電話に出ないかもしれない。"
-};
+    const japaneseModelContent = {
+        "1/10": "今夜、あなたに電話するかもしれない。",
+        "2/10": "あなたの家に寄るかもしれない。",
+        "3/10": "明日寝坊するかもしれない。",
+        "4/10": "君、この映画好きかもしれないよ。",
+        "5/10": "彼は充電器を持ってるかも。",
+        "6/10": "明日までにこれを終わらせられないかもしれない。",
+        "7/10": "今夜は出かけないかもしれない。",
+        "8/10": "彼はそれに賛成しないかもしれない。",
+        "9/10": "彼は今日は機嫌が悪いかもしれない。",
+        "10/10": "彼女はすぐに電話に出ないかもしれない。"
+    };
 
-const englishModelContent = {
-    "1/10": "I might call you tonight.",
-    "2/10": "I might stop by your house.",
-    "3/10": "I might oversleep tomorrow.",
-    "4/10": "You might like this movie.",
-    "5/10": "He might have a charger.",
-    "6/10": "I might not finish this by tomorrow.",
-    "7/10": "I might not go out tonight.",
-    "8/10": "He might not agree with it.",
-    "9/10": "He might not be in a good mood today.",
-    "10/10": "She might not answer your call right away."
-};
+    const englishModelContent = {
+        "1/10": "I might call you tonight.",
+        "2/10": "I might stop by your house.",
+        "3/10": "I might oversleep tomorrow.",
+        "4/10": "You might like this movie.",
+        "5/10": "He might have a charger.",
+        "6/10": "I might not finish this by tomorrow.",
+        "7/10": "I might not go out tonight.",
+        "8/10": "He might not agree with it.",
+        "9/10": "He might not be in a good mood today.",
+        "10/10": "She might not answer your call right away."
+    };
 
 
 
@@ -195,7 +211,15 @@ const englishModelContent = {
     function goEnglishContent() {
         englishContent.style.display = 'block';
         japaneseContent.style.display = 'none';
-availableContent.style.display = 'none';
+        availableContent.style.display = 'none';
+        if (contentOrder.textContent == '9/10') {
+            availableContent.style.display = 'block';
+            availableSentence.textContent = "※機嫌がいいは「be in a good mood」と表す。"
+        }
+        if (contentOrder.textContent == '10/10') {
+            availableContent.style.display = 'block';
+            availableSentence.textContent = "※right awayは「すぐに」を表すめちゃ便利な表現。"
+        }
         buttonGroup.style.display = 'block';
         englishContentOrder.textContent = contentOrder.textContent;
         englishMainContent.textContent = englishModelContent[contentOrder.textContent];
@@ -206,7 +230,7 @@ availableContent.style.display = 'none';
     function goJapaneseContent() {
         if (isClicked == 0) {
             englishContent.style.display = 'none';
-            japaneseContent.style.display = 'block';            
+            japaneseContent.style.display = 'block';
             availableContent.style.display = 'none';
 
             buttonGroup.style.display = 'none';
@@ -232,7 +256,7 @@ availableContent.style.display = 'none';
 
     }
 
-        function goNext() {
+    function goNext() {
         availableContent.style.display = 'none';
         clickCount++;
         let arrayOrder = 0;
@@ -244,8 +268,8 @@ availableContent.style.display = 'none';
             englishContent.style.transform = 'translateX(50%) rotate(30deg)'
             setTimeout(() => {
                 englishContent.style.display = 'none';
-                japaneseContent.style.display = 'block';            
-            availableContent.style.display = 'none';
+                japaneseContent.style.display = 'block';
+                availableContent.style.display = 'none';
 
                 successCount++;
                 englishContent.style.opacity = '1';
@@ -260,8 +284,8 @@ availableContent.style.display = 'none';
             englishContent.style.transform = 'translateX(50%) rotate(30deg)'
             setTimeout(() => {
                 englishContent.style.display = 'none';
-                japaneseContent.style.display = 'block';            
-            availableContent.style.display = 'none';
+                japaneseContent.style.display = 'block';
+                availableContent.style.display = 'none';
 
                 successCount++;
                 englishContent.style.opacity = '1';
@@ -273,7 +297,7 @@ availableContent.style.display = 'none';
                 setTimeout(() => {
                     englishContent.style.display = 'none';
                     japaneseContent.style.display = 'none';
-availableContent.style.display = 'none';
+                    availableContent.style.display = 'none';
                     successContent.style.display = 'block';
                     buttonGroup.style.display = 'none';
                     buttonSide.style.display = 'block';
@@ -288,7 +312,7 @@ availableContent.style.display = 'none';
             setTimeout(() => {
                 englishContent.style.display = 'none';
                 japaneseContent.style.display = 'none';
-availableContent.style.display = 'none';
+                availableContent.style.display = 'none';
                 buttonGroup.style.display = 'none';
                 successContent.style.display = 'block';
                 buttonSide.style.display = 'block';
@@ -324,8 +348,8 @@ availableContent.style.display = 'none';
                 englishContent.style.transform = 'translateX(-50%) rotate(-30deg)'
                 setTimeout(() => {
                     englishContent.style.display = 'none';
-                    japaneseContent.style.display = 'block';            
-            availableContent.style.display = 'none';
+                    japaneseContent.style.display = 'block';
+                    availableContent.style.display = 'none';
 
                     englishContent.style.opacity = '1';
                     englishContent.style.transform = 'translateX(0) rotate(0deg)';
@@ -338,8 +362,8 @@ availableContent.style.display = 'none';
                 englishContent.style.transform = 'translateX(-50%) rotate(-30deg)'
                 setTimeout(() => {
                     englishContent.style.display = 'none';
-                    japaneseContent.style.display = 'block';            
-            availableContent.style.display = 'none';
+                    japaneseContent.style.display = 'block';
+                    availableContent.style.display = 'none';
 
                     englishContent.style.opacity = '1';
                     englishContent.style.transform = 'translateX(0) rotate(0deg)';
@@ -354,8 +378,8 @@ availableContent.style.display = 'none';
             englishContent.style.transform = 'translateX(-50%) rotate(-30deg)';
             setTimeout(() => {
                 englishContent.style.display = 'none';
-                japaneseContent.style.display = 'block';            
-            availableContent.style.display = 'none';
+                japaneseContent.style.display = 'block';
+                availableContent.style.display = 'none';
 
                 englishContent.style.opacity = '1';
                 englishContent.style.transform = 'translateX(0) rotate(0deg)';
@@ -444,4 +468,5 @@ availableContent.style.display = 'none';
     }
 
 </script>
+
 </html>
