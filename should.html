@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 
 <html lang="ja">
+
 <head>
-<meta charset="utf-8"/>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&amp;display=swap" rel="stylesheet"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<style>
+    <meta charset="utf-8" />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&amp;display=swap"
+        rel="stylesheet" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <style>
         body {
             background-color: #f4f4f4;
             font-family: "Noto Sans JP", sans-serif;
@@ -66,43 +68,50 @@
             margin-right: 15px;
         }
     </style>
-<title>Flash Card</title>
+    <title>Flash Card</title>
 </head>
+
 <body>
-<div class="first-screen" id="fourth-page" style="display: block;">
-<div style="display: flex; justify-content: space-between; align-items: center;">
-<p id="chapter30" style="color: #05a5a9; font-size: 36px; font-weight: 700; margin: 0px;margin-left: 10px;">第4章30</p>
-<img class="icon" onclick="goFirst()" src="img/menu.png"/>
-</div>
-<div id="japanese_content" onclick="goEnglishContent()" style="display: block;transition: opacity 1s ease-in-out, transform 1s ease-in-out;transform: translateX(0); z-index: 0;">
-<div class="content-item">
-<div>
-<p id="content_order" style="color: black; font-size: 20px; font-weight: 700; margin: 0px;">1/10</p>
-</div>
-<div style="display: flex; justify-content: center; align-items: center; margin-top: 50px;">
-<p id="main_content" style="color: black; font-size: 20px; font-weight: 600; margin: 0px; text-align: center;">
+    <div class="first-screen" id="fourth-page" style="display: block;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <p id="chapter30" style="color: #05a5a9; font-size: 36px; font-weight: 700; margin: 0px;margin-left: 10px;">
+                第4章30</p>
+            <img class="icon" onclick="goFirst()" src="img/menu.png" />
+        </div>
+        <div id="japanese_content" onclick="goEnglishContent()"
+            style="display: block;transition: opacity 1s ease-in-out, transform 1s ease-in-out;transform: translateX(0); z-index: 0;">
+            <div class="content-item">
+                <div>
+                    <p id="content_order" style="color: black; font-size: 20px; font-weight: 700; margin: 0px;">1/10</p>
+                </div>
+                <div style="display: flex; justify-content: center; align-items: center; margin-top: 50px;">
+                    <p id="main_content"
+                        style="color: black; font-size: 20px; font-weight: 600; margin: 0px; text-align: center;">
                         もっと運動したほうがいいよな〜</p>
-</div>
-</div>
-</div>
-<div id="english_content" style="display: none; position: relative; transition: opacity 1s ease-in-out, transform 1s ease-in-out;transform: translateX(0);">
-<div class="content-item" onclick="goJapaneseContent()">
-<div>
-<p id="english_content_order" style="color: black; font-size: 20px; font-weight: 700; margin: 0px;">
+                </div>
+            </div>
+        </div>
+        <div id="english_content"
+            style="display: none; position: relative; transition: opacity 1s ease-in-out, transform 1s ease-in-out;transform: translateX(0);">
+            <div class="content-item" onclick="goJapaneseContent()">
+                <div>
+                    <p id="english_content_order" style="color: black; font-size: 20px; font-weight: 700; margin: 0px;">
                         1/10</p>
-</div>
-<div style="display: flex; justify-content: center; align-items: center; margin-top: 50px;">
-<p id="english_main_content" style="color: black; font-size: 20px; font-weight: 500; margin: 0px; text-align: center;">
+                </div>
+                <div style="display: flex; justify-content: center; align-items: center; margin-top: 50px;">
+                    <p id="english_main_content"
+                        style="color: black; font-size: 20px; font-weight: 500; margin: 0px; text-align: center;">
                         I should get more exercise.</p>
-</div>
-</div>
-<div style="position: absolute; bottom: 0px;left: 10px; z-index: 2;">
-<audio controls="True" id="audioBtn" src="audio/answer.mp3" style="width: 250px; height: 30px;"></audio>
-</div>
-<div style="position: absolute; bottom: 0px;left: 10px;z-index: 1;">
-<audio controls="True" id="audioAnswer" src="audio/answer.mp3" style="width: 250px; height: 30px;"></audio>
-</div>
-</div>
+                </div>
+            </div>
+            <div style="position: absolute; bottom: 0px;left: 10px; z-index: 2;">
+                <audio controls="True" id="audioBtn" src="audio/answer.mp3" style="width: 250px; height: 30px;"></audio>
+            </div>
+            <div style="position: absolute; bottom: 0px;left: 10px;z-index: 1;">
+                <audio controls="True" id="audioAnswer" src="audio/answer.mp3"
+                    style="width: 250px; height: 30px;"></audio>
+            </div>
+        </div>
         <div id="available_content"
             style="justify-content: center; align-items: center; margin-top: 20px; display: none;">
             <p id="available_sentence"
@@ -110,48 +119,55 @@
                 ※特定のカフェの話をしていないのでa cafeとなる。</p>
         </div>
         <div id="success_content" style="display: none;">
-<div class="content-item" style="position: relative;">
-<img src="img/success.PNG" style="width: 200px; height: 120px;position: absolute; bottom: 80px;left: 50px;"/>
-<img src="img/flower_left.png" style="width: 70px; height: 70px;position: absolute; bottom: 0px;left: 10px;"/>
-<img src="img/flower_right.png" style="width: 70px; height: 70px;position: absolute; bottom: 0px;right: 10px;"/>
-</div>
-</div>
-<div id="button_group" style="position: relative; margin-top: 20px; display: none;">
-<img id="leftArrow" src="img/left-arrow.PNG" style="width: 50px; height: 30px; position: absolute; left: 0px; display: block;"/>
-<img id="rightArrow" src="img/right-arrow.PNG" style="width: 50px; height: 30px;position: absolute; right: 0px;"/>
-</div>
-<div id="button_side" style="position: relative; margin-top: 20px; display: none;">
-<button onclick="goLink()" style="position: absolute; left: 0px; display: block; margin: 0px;">問題を修了する</button>
-<img onclick="goNextPart()" src="img/right-arrow.PNG" style="width: 50px; height: 30px;position: absolute; right: 0px;"/>
-</div>
-</div>
+            <div class="content-item" style="position: relative;">
+                <img src="img/success.PNG"
+                    style="width: 200px; height: 120px;position: absolute; bottom: 80px;left: 50px;" />
+                <img src="img/flower_left.png"
+                    style="width: 70px; height: 70px;position: absolute; bottom: 0px;left: 10px;" />
+                <img src="img/flower_right.png"
+                    style="width: 70px; height: 70px;position: absolute; bottom: 0px;right: 10px;" />
+            </div>
+        </div>
+        <div id="button_group" style="position: relative; margin-top: 20px; display: none;">
+            <img id="leftArrow" src="img/left-arrow.PNG"
+                style="width: 50px; height: 30px; position: absolute; left: 0px; display: block;" />
+            <img id="rightArrow" src="img/right-arrow.PNG"
+                style="width: 50px; height: 30px;position: absolute; right: 0px;" />
+        </div>
+        <div id="button_side" style="position: relative; margin-top: 20px; display: none;">
+            <button onclick="goLink()"
+                style="position: absolute; left: 0px; display: block; margin: 0px;">問題を修了する</button>
+            <img onclick="goNextPart()" src="img/right-arrow.PNG"
+                style="width: 50px; height: 30px;position: absolute; right: 0px;" />
+        </div>
+    </div>
 </body>
 <script>
-const japaneseModelContent = {
-    "1/10": "もっと運動したほうがいいよな〜",
-    "2/10": "もっと早く起きたほうがいいよな。",
-    "3/10": "休んだほうがいいよ。",
-    "4/10": "天気を確認したほうがいいよ。",
-    "5/10": "彼に直接話したほうがいいよ。",
-    "6/10": "絶対に行ったほうがいいよ！",
-    "7/10": "あまり夜更かししないほうがいいよ。",
-    "8/10": "ジャンクフードをそんなに食べないほうがいいよ。",
-    "9/10": "それについてあまり心配しないほうがいいよ。",
-    "10/10": "朝ご飯を抜かないほうがいいよ。"
-};
+    const japaneseModelContent = {
+        "1/10": "もっと運動したほうがいいよな〜",
+        "2/10": "もっと早く起きたほうがいいよな。",
+        "3/10": "休んだほうがいいよ。",
+        "4/10": "天気を確認したほうがいいよ。",
+        "5/10": "彼に直接話したほうがいいよ。",
+        "6/10": "絶対に行ったほうがいいよ！",
+        "7/10": "あまり夜更かししないほうがいいよ。",
+        "8/10": "ジャンクフードをそんなに食べないほうがいいよ。",
+        "9/10": "それについてあまり心配しないほうがいいよ。",
+        "10/10": "朝ご飯を抜かないほうがいいよ。"
+    };
 
-const englishModelContent = {
-    "1/10": "I should get more exercise.",
-    "2/10": "I should wake up earlier.",
-    "3/10": "You should get some rest.",
-    "4/10": "You should check the weather.",
-    "5/10": "You should talk to him directly.",
-    "6/10": "You should definitely go there.",
-    "7/10": "You shouldn't stay up too late.",
-    "8/10": "You shouldn't eat so much junk food.",
-    "9/10": "You shouldn't worry too much about it.",
-    "10/10": "You shouldn't skip breakfast."
-};
+    const englishModelContent = {
+        "1/10": "I should get more exercise.",
+        "2/10": "I should wake up earlier.",
+        "3/10": "You should get some rest.",
+        "4/10": "You should check the weather.",
+        "5/10": "You should talk to him directly.",
+        "6/10": "You should definitely go there.",
+        "7/10": "You shouldn't stay up too late.",
+        "8/10": "You shouldn't eat so much junk food.",
+        "9/10": "You shouldn't worry too much about it.",
+        "10/10": "You shouldn't skip breakfast."
+    };
 
 
 
@@ -194,7 +210,31 @@ const englishModelContent = {
     function goEnglishContent() {
         englishContent.style.display = 'block';
         japaneseContent.style.display = 'none';
-availableContent.style.display = 'none';
+        availableContent.style.display = 'none';
+        if (contentOrder.textContent == '1/10') {
+            availableContent.style.display = 'block';
+            availableSentence.textContent = "※exercise moreも可。"
+        }
+        if (contentOrder.textContent == '2/10') {
+            availableContent.style.display = 'block';
+            availableSentence.textContent = "※earlyは「早く」earlierはmore earlyつまりは「もっと早く」という意味に。"
+        }
+        if (contentOrder.textContent == '4/10') {
+            availableContent.style.display = 'block';
+            availableSentence.textContent = "※weather forcastも可。"
+        }
+        if (contentOrder.textContent == '5/10') {
+            availableContent.style.display = 'block';
+            availableSentence.textContent = "※in person「直接会って」という表現もある。"
+        }
+        if (contentOrder.textContent == '8/10') {
+            availableContent.style.display = 'block';
+            availableSentence.textContent = "※You shouldn't eat too much junk food.も可。"
+        }
+        if (contentOrder.textContent == '10/10') {
+            availableContent.style.display = 'block';
+            availableSentence.textContent = "※breakfast, lunch, dinnerは基本aやtheはつかない。"
+        }
         buttonGroup.style.display = 'block';
         englishContentOrder.textContent = contentOrder.textContent;
         englishMainContent.textContent = englishModelContent[contentOrder.textContent];
@@ -205,7 +245,7 @@ availableContent.style.display = 'none';
     function goJapaneseContent() {
         if (isClicked == 0) {
             englishContent.style.display = 'none';
-            japaneseContent.style.display = 'block';            
+            japaneseContent.style.display = 'block';
             availableContent.style.display = 'none';
 
             buttonGroup.style.display = 'none';
@@ -231,7 +271,7 @@ availableContent.style.display = 'none';
 
     }
 
-        function goNext() {
+    function goNext() {
         availableContent.style.display = 'none';
         clickCount++;
         let arrayOrder = 0;
@@ -243,8 +283,8 @@ availableContent.style.display = 'none';
             englishContent.style.transform = 'translateX(50%) rotate(30deg)'
             setTimeout(() => {
                 englishContent.style.display = 'none';
-                japaneseContent.style.display = 'block';            
-            availableContent.style.display = 'none';
+                japaneseContent.style.display = 'block';
+                availableContent.style.display = 'none';
 
                 successCount++;
                 englishContent.style.opacity = '1';
@@ -259,8 +299,8 @@ availableContent.style.display = 'none';
             englishContent.style.transform = 'translateX(50%) rotate(30deg)'
             setTimeout(() => {
                 englishContent.style.display = 'none';
-                japaneseContent.style.display = 'block';            
-            availableContent.style.display = 'none';
+                japaneseContent.style.display = 'block';
+                availableContent.style.display = 'none';
 
                 successCount++;
                 englishContent.style.opacity = '1';
@@ -272,7 +312,7 @@ availableContent.style.display = 'none';
                 setTimeout(() => {
                     englishContent.style.display = 'none';
                     japaneseContent.style.display = 'none';
-availableContent.style.display = 'none';
+                    availableContent.style.display = 'none';
                     successContent.style.display = 'block';
                     buttonGroup.style.display = 'none';
                     buttonSide.style.display = 'block';
@@ -287,7 +327,7 @@ availableContent.style.display = 'none';
             setTimeout(() => {
                 englishContent.style.display = 'none';
                 japaneseContent.style.display = 'none';
-availableContent.style.display = 'none';
+                availableContent.style.display = 'none';
                 buttonGroup.style.display = 'none';
                 successContent.style.display = 'block';
                 buttonSide.style.display = 'block';
@@ -323,8 +363,8 @@ availableContent.style.display = 'none';
                 englishContent.style.transform = 'translateX(-50%) rotate(-30deg)'
                 setTimeout(() => {
                     englishContent.style.display = 'none';
-                    japaneseContent.style.display = 'block';            
-            availableContent.style.display = 'none';
+                    japaneseContent.style.display = 'block';
+                    availableContent.style.display = 'none';
 
                     englishContent.style.opacity = '1';
                     englishContent.style.transform = 'translateX(0) rotate(0deg)';
@@ -337,8 +377,8 @@ availableContent.style.display = 'none';
                 englishContent.style.transform = 'translateX(-50%) rotate(-30deg)'
                 setTimeout(() => {
                     englishContent.style.display = 'none';
-                    japaneseContent.style.display = 'block';            
-            availableContent.style.display = 'none';
+                    japaneseContent.style.display = 'block';
+                    availableContent.style.display = 'none';
 
                     englishContent.style.opacity = '1';
                     englishContent.style.transform = 'translateX(0) rotate(0deg)';
@@ -353,8 +393,8 @@ availableContent.style.display = 'none';
             englishContent.style.transform = 'translateX(-50%) rotate(-30deg)';
             setTimeout(() => {
                 englishContent.style.display = 'none';
-                japaneseContent.style.display = 'block';            
-            availableContent.style.display = 'none';
+                japaneseContent.style.display = 'block';
+                availableContent.style.display = 'none';
 
                 englishContent.style.opacity = '1';
                 englishContent.style.transform = 'translateX(0) rotate(0deg)';
@@ -443,4 +483,5 @@ availableContent.style.display = 'none';
     }
 
 </script>
+
 </html>
