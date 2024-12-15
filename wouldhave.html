@@ -214,6 +214,22 @@
         englishContent.style.display = 'block';
         japaneseContent.style.display = 'none';
         availableContent.style.display = 'none';
+        if (contentOrder.textContent == '1/10') {
+            availableContent.style.display = 'block';
+            availableSentence.textContent = "※正確にはif you had told meだが、ネイティブは過去完了は面倒くさくて使わない人が多いため、一旦は過去のことは過去形で表しておこう！"
+        }
+        if (contentOrder.textContent == '2/10') {
+            availableContent.style.display = 'block';
+            availableSentence.textContent = "※I could've given you a hadも可。"
+        }
+        if (contentOrder.textContent == '3/10') {
+            availableContent.style.display = 'block';
+            availableSentence.textContent = "※相手のところに行く時にはcomeを使う。"
+        }
+        if (contentOrder.textContent == '6/10') {
+            availableContent.style.display = 'block';
+            availableSentence.textContent = "※testでも可。"
+        }
         buttonGroup.style.display = 'block';
         englishContentOrder.textContent = contentOrder.textContent;
         englishMainContent.textContent = englishModelContent[contentOrder.textContent];

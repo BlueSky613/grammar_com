@@ -216,6 +216,14 @@
         englishContent.style.display = 'block';
         japaneseContent.style.display = 'none';
         availableContent.style.display = 'none';
+        if (contentOrder.textContent == '5/10') {
+            availableContent.style.display = 'block';
+            availableSentence.textContent = "※ate breakfastでも可。"
+        }
+        if (contentOrder.textContent == '10/10') {
+            availableContent.style.display = 'block';
+            availableSentence.textContent = "※leftでも可。"
+        }
         buttonGroup.style.display = 'block';
         englishContentOrder.textContent = contentOrder.textContent;
         englishMainContent.textContent = englishModelContent[contentOrder.textContent];

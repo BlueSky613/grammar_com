@@ -112,7 +112,7 @@
                     style="width: 250px; height: 30px;"></audio>
             </div>
         </div>
-                <div id="available_content"
+        <div id="available_content"
             style="justify-content: center; align-items: center; margin-top: 20px; display: none;">
             <p id="available_sentence"
                 style="color: black; font-size: 14px; font-weight: 600; margin: 0px; text-align: center;">
@@ -206,7 +206,15 @@
     function goEnglishContent() {
         englishContent.style.display = 'block';
         japaneseContent.style.display = 'none';
-availableContent.style.display = 'none';
+        availableContent.style.display = 'none';
+        if (contentOrder.textContent == '8/10') {
+            availableContent.style.display = 'block';
+            availableSentence.textContent = "※drive to your workplace.も可。"
+        }
+        if (contentOrder.textContent == '9/10') {
+            availableContent.style.display = 'block';
+            availableSentence.textContent = "※helpの前にsomeをつけてもいい。helpは数えられないので、基本的にはaやtheはつけない。"
+        }
         buttonGroup.style.display = 'block';
         englishContentOrder.textContent = contentOrder.textContent;
         englishMainContent.textContent = englishModelContent[contentOrder.textContent];
@@ -217,7 +225,7 @@ availableContent.style.display = 'none';
     function goJapaneseContent() {
         if (isClicked == 0) {
             englishContent.style.display = 'none';
-            japaneseContent.style.display = 'block';            
+            japaneseContent.style.display = 'block';
             availableContent.style.display = 'none';
 
             buttonGroup.style.display = 'none';
@@ -243,7 +251,7 @@ availableContent.style.display = 'none';
 
     }
 
-        function goNext() {
+    function goNext() {
         availableContent.style.display = 'none';
         clickCount++;
         let arrayOrder = 0;
@@ -255,8 +263,8 @@ availableContent.style.display = 'none';
             englishContent.style.transform = 'translateX(50%) rotate(30deg)'
             setTimeout(() => {
                 englishContent.style.display = 'none';
-                japaneseContent.style.display = 'block';            
-            availableContent.style.display = 'none';
+                japaneseContent.style.display = 'block';
+                availableContent.style.display = 'none';
 
                 successCount++;
                 englishContent.style.opacity = '1';
@@ -271,8 +279,8 @@ availableContent.style.display = 'none';
             englishContent.style.transform = 'translateX(50%) rotate(30deg)'
             setTimeout(() => {
                 englishContent.style.display = 'none';
-                japaneseContent.style.display = 'block';            
-            availableContent.style.display = 'none';
+                japaneseContent.style.display = 'block';
+                availableContent.style.display = 'none';
 
                 successCount++;
                 englishContent.style.opacity = '1';
@@ -284,7 +292,7 @@ availableContent.style.display = 'none';
                 setTimeout(() => {
                     englishContent.style.display = 'none';
                     japaneseContent.style.display = 'none';
-availableContent.style.display = 'none';
+                    availableContent.style.display = 'none';
                     successContent.style.display = 'block';
                     buttonGroup.style.display = 'none';
                     buttonSide.style.display = 'block';
@@ -299,7 +307,7 @@ availableContent.style.display = 'none';
             setTimeout(() => {
                 englishContent.style.display = 'none';
                 japaneseContent.style.display = 'none';
-availableContent.style.display = 'none';
+                availableContent.style.display = 'none';
                 buttonGroup.style.display = 'none';
                 successContent.style.display = 'block';
                 buttonSide.style.display = 'block';
@@ -335,8 +343,8 @@ availableContent.style.display = 'none';
                 englishContent.style.transform = 'translateX(-50%) rotate(-30deg)'
                 setTimeout(() => {
                     englishContent.style.display = 'none';
-                    japaneseContent.style.display = 'block';            
-            availableContent.style.display = 'none';
+                    japaneseContent.style.display = 'block';
+                    availableContent.style.display = 'none';
 
                     englishContent.style.opacity = '1';
                     englishContent.style.transform = 'translateX(0) rotate(0deg)';
@@ -349,8 +357,8 @@ availableContent.style.display = 'none';
                 englishContent.style.transform = 'translateX(-50%) rotate(-30deg)'
                 setTimeout(() => {
                     englishContent.style.display = 'none';
-                    japaneseContent.style.display = 'block';            
-            availableContent.style.display = 'none';
+                    japaneseContent.style.display = 'block';
+                    availableContent.style.display = 'none';
 
                     englishContent.style.opacity = '1';
                     englishContent.style.transform = 'translateX(0) rotate(0deg)';
@@ -365,8 +373,8 @@ availableContent.style.display = 'none';
             englishContent.style.transform = 'translateX(-50%) rotate(-30deg)';
             setTimeout(() => {
                 englishContent.style.display = 'none';
-                japaneseContent.style.display = 'block';            
-            availableContent.style.display = 'none';
+                japaneseContent.style.display = 'block';
+                availableContent.style.display = 'none';
 
                 englishContent.style.opacity = '1';
                 englishContent.style.transform = 'translateX(0) rotate(0deg)';
