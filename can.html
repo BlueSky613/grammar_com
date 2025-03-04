@@ -81,8 +81,12 @@
         <div id="japanese_content" onclick="goEnglishContent()"
             style="display: block;transition: opacity 1s ease-in-out, transform 1s ease-in-out;transform: translateX(0); z-index: 0;">
             <div class="content-item">
-                <div>
+                <div style="display: flex; justify-content: space-between;">
                     <p id="content_order" style="color: black; font-size: 20px; font-weight: 700; margin: 0px;">1/10</p>
+                    <p id="ja_previous_btn"
+                        style="color: black; font-size: 20px; font-weight: 700; margin: 0px; display: none;"
+                        onclick="goPrevious()">
+                        前の</p>
                 </div>
                 <div style="display: flex; justify-content: center; align-items: center; margin-top: 50px;">
                     <p id="main_content"
@@ -94,9 +98,13 @@
         <div id="english_content"
             style="display: none; position: relative; transition: opacity 1s ease-in-out, transform 1s ease-in-out;transform: translateX(0);">
             <div class="content-item" onclick="goJapaneseContent()">
-                <div>
+                <div style="display: flex; justify-content: space-between;">
                     <p id="english_content_order" style="color: black; font-size: 20px; font-weight: 700; margin: 0px;">
                         1/10</p>
+                    <p id="en_previous_btn"
+                        style="color: black; font-size: 20px; font-weight: 700; margin: 0px; display: none;"
+                        onclick="goPrevious()">
+                        Previous</p>
                 </div>
                 <div style="display: flex; justify-content: center; align-items: center; margin-top: 50px;">
                     <p id="english_main_content"
@@ -195,6 +203,8 @@
     var audioBtn = document.getElementById('audioBtn');
     var availableContent = document.getElementById('available_content');
     var availableSentence = document.getElementById('available_sentence');
+    var japreviousBtn = document.getElementById('ja_previous_btn');
+    var enpreviousBtn = document.getElementById('en_previous_btn');
     let isMouseDown = false;
     let startX, endX;
 
@@ -276,7 +286,8 @@
                 englishContent.style.display = 'none';
                 japaneseContent.style.display = 'block';
                 availableContent.style.display = 'none';
-
+                japreviousBtn.style.display = "block";
+                enpreviousBtn.style.display = "block";
                 successCount++;
                 englishContent.style.opacity = '1';
                 englishContent.style.transform = 'translateX(0) rotate(0deg)';
@@ -327,6 +338,73 @@
                 successCount = 0;
             }, 1000);
         }
+    }
+
+    function goPrevious() {
+        var recentpage = 0;
+        if (clickCount < 10) {
+            recentpage = order.indexOf(contentOrder.textContent);
+        }
+        if (arrayOrder < 10 && clickCount < 10) {
+            englishContent.style.display = 'none';
+            japaneseContent.style.display = 'block';
+            availableContent.style.display = 'none';
+            if (recentpage != 1) {
+                japreviousBtn.style.display = "block";
+                enpreviousBtn.style.display = "block";
+            } else {
+                japreviousBtn.style.display = "none";
+                enpreviousBtn.style.display = "none";
+            }
+            successCount--;
+            clickCount--;
+            buttonGroup.style.display = 'none';
+            contentOrder.textContent = order[recentpage - 1];
+            mainContent.textContent = japaneseModelContent[contentOrder.textContent];
+
+        } else if (onceMore.length != 0) {
+            englishContent.style.opacity = '0';
+            englishContent.style.transform = 'translateX(50%) rotate(30deg)'
+            setTimeout(() => {
+                englishContent.style.display = 'none';
+                japaneseContent.style.display = 'block';
+                availableContent.style.display = 'none';
+
+                successCount++;
+                englishContent.style.opacity = '1';
+                englishContent.style.transform = 'translateX(0) rotate(0deg)';
+            }, 1000);
+            buttonGroup.style.display = 'none';
+            if (clickCount != 10) onceMore.shift(onceMore[0]);
+            if (onceMore.length == 0) {
+                setTimeout(() => {
+                    englishContent.style.display = 'none';
+                    japaneseContent.style.display = 'none';
+                    availableContent.style.display = 'none';
+                    successContent.style.display = 'block';
+                    buttonGroup.style.display = 'none';
+                    buttonSide.style.display = 'block';
+                    clickCount = 0;
+                    successCount = 0;
+                }, 1000);
+            }
+            contentOrder.textContent = order[onceMore[0]];
+            mainContent.textContent = japaneseModelContent[contentOrder.textContent];
+
+        } else {
+            setTimeout(() => {
+                englishContent.style.display = 'none';
+                japaneseContent.style.display = 'none';
+                availableContent.style.display = 'none';
+                buttonGroup.style.display = 'none';
+                successContent.style.display = 'block';
+                buttonSide.style.display = 'block';
+                clickCount = 0;
+                partCount = 0;
+                successCount = 0;
+            }, 1000);
+        }
+
     }
 
     var partCount = 0;
