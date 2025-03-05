@@ -118,26 +118,20 @@
                 style="color: black; font-size: 14px; font-weight: 600; margin: 0px; text-align: center;">
                 ※特定のカフェの話をしていないのでa cafeとなる。</p>
         </div>
-        <div id="success_content" style="display: none;">
-            <div class="content-item" style="position: relative;">
-                <img src="img/success.PNG"
-                    style="width: 200px; height: 120px;position: absolute; bottom: 80px;left: 50px;" />
-                <img src="img/flower_left.png"
-                    style="width: 70px; height: 70px;position: absolute; bottom: 0px;left: 10px;" />
-                <img src="img/flower_right.png"
-                    style="width: 70px; height: 70px;position: absolute; bottom: 0px;right: 10px;" />
+        <div id="success_content"
+            style="display: none; position: relative; transition: opacity 1s ease-in-out, transform 1s ease-in-out;transform: translateX(0);">
+            <div class="content-item">
+                <div style="display: flex; justify-content: center; align-items: center; margin-top: 50px;">
+                    <p id="english_main_content"
+                        style="color: black; font-size: 30px; font-weight: 500; margin: 0px; text-align: center;" onclick="goNextPart()">
+                        Finish</p>
+                </div>
             </div>
         </div>
         <div id="button_group" style="position: relative; margin-top: 20px; display: block;">
             <img id="leftArrow" src="img/left-arrow.PNG"
                 style="width: 50px; height: 30px; position: absolute; left: 0px; display: none;" />
             <img id="rightArrow" src="img/right-arrow.PNG"
-                style="width: 50px; height: 30px;position: absolute; right: 0px;" />
-        </div>
-        <div id="button_side" style="position: relative; margin-top: 20px; display: none;">
-            <button onclick="goLink()"
-                style="position: absolute; left: 0px; display: block; margin: 0px;">問題を修了する</button>
-            <img onclick="goNextPart()" src="img/right-arrow.PNG"
                 style="width: 50px; height: 30px;position: absolute; right: 0px;" />
         </div>
     </div>
@@ -265,17 +259,30 @@
 
     function goNext() {
         recentpage = order.indexOf(contentOrder.textContent);
-        englishContent.style.display = 'none';
-        leftBtn.style.display = 'block';
-        japaneseContent.style.display = 'block';
-        availableContent.style.display = 'none';
-        contentOrder.textContent = order[recentpage + 1];
-        mainContent.textContent = japaneseModelContent[contentOrder.textContent];
+        if (recentpage == 9) {
+            successContent.style.display = 'block';
+            japaneseContent.style.display = 'none';
+            rightBtn.style.display = 'none';
+        } else {
+            successContent.style.display = 'none';
+            englishContent.style.display = 'none';
+            leftBtn.style.display = 'block';
+            japaneseContent.style.display = 'block';
+            availableContent.style.display = 'none';
+            contentOrder.textContent = order[recentpage + 1];
+            mainContent.textContent = japaneseModelContent[contentOrder.textContent];
+        }
     }
 
     function goPrevious() {
-        recentpage = order.indexOf(contentOrder.textContent);
+        if (successContent.style.display == 'block') {
+            recentpage = 10;
+        } else {
+            recentpage = order.indexOf(contentOrder.textContent);
+        }
+        if (recentpage == 1) leftBtn.style.display = 'none';
         englishContent.style.display = 'none';
+        successContent.style.display = 'none';
         rightBtn.style.display = 'block';
         japaneseContent.style.display = 'block';
         availableContent.style.display = 'none';
@@ -348,6 +355,10 @@
             mainContent.textContent = japaneseModelContent[contentOrder.textContent];
 
         }
+    }
+
+    function goNextPart() {
+        window.location.href = "https://masaenglishcompany.com/grammar/could.html";
     }
 
     var audioVar;
